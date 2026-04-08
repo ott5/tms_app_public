@@ -16,6 +16,7 @@ Baza i architektura są już w większości zaprojektowane i wdrożone:
 ## Uwagi dot. projektu
 * **Cel:** Obecna wersja służy weryfikacji poprawności złożonych relacji bazodanowych, dlatego dane wprowadza się ręcznie.
 * **Prywatność:** Ze względu na charakter projektu (praca inżynierska), główne repozytorium z kodem źródłowym pozostaje prywatne.
+* **Inne:** Warstwa techniczna i kod są w języku angielskim, natomiast interfejs użytkownika (UI) posiada polskie tłumaczenia (Pol-English). Jest to stan tymczasowy na potrzeby prototypu.
 
 ## Przykładowa wizualizacja
 Podgląd struktury bazy oraz przykład działających paneli systemu znajduje się w załączonym pliku. Stan na dzień **03.04.2026**:
