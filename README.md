@@ -67,8 +67,10 @@ Dokończenie dedykowanych widoków dla posczególnych ról (Admin,Technik,Księg
 * **Administrator (SuperUser) [90%]** Ma dostęp do absolutnie wszystkiego. Zarządza całą strukturą aplikacji, uprawnieniami i może edytować każdy rekord w bazie.
 * **Technik (Admin)[70%]:** Zarządza flotą i użytkownikami na co dzień. Może dodawać nowe pojazdy, zakładać konta pracownikom i poprawiać błędy we wpisach (nadzór nad danymi).
 * **Właściciel** Widok biznesowy. Ma pełny wgląd w finanse, statystyki zarobków, raporty o kierowcach oraz stanie całej floty.
+* **Dyspozytor** Widok i zarządzanie zleceniami, pojazdami i przypisywaniem ich do kierowców
 * **Kierowca:** Widok osobisty. Ma podgląd swoich danych, przypisanych tras, pojazdów oraz historii wykonanych zleceń.
 * **Księgowa** Dostęp ograniczony do finansów. Zarządza fakturami, kosztami (paliwo, serwisy) i rozliczeniami.
+* **Magazynier** Widok i zarządzanie magazynem
 ### 2.Uproszczenie dodawania nowych danych
 Wprowadzenie uproszczonych mechanizmów dodawania, wglądu do danych.
 * **Asystent dodawania:** System "prowadzi za ręke" podczas dodawania nowych rekordów. Przykładowo dodając nowego pracownika, aplikacja przeprowadza użytkownika przez kolejne etapy (dane osobowe, kontaktowe, dokumenty)
