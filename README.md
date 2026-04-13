@@ -61,3 +61,37 @@ Ten fragment projektu przedstawia podejście do zarządzania zróżnicowaną flo
 * **Dziedziczenie tabel (CTI):** System rozdziela dane na ogólne (tabela vehicles) oraz szczegółowe (np. vehicle_cargo_tank_details). Dzięki temu parametry techniczne charakterystyczne tylko dla cystern są przechowywane w dedykowanej tabeli, co pozwala uniknąć pustych pól (NULL) i zachować czystość i estetykę w bazie.
 * **Struktura słownikowa:** Kluczowe parametry, powtarzalne itp. są przechowywane w wydzielonych osobnych tabelach słownikowych. Są uzupełniane za pomocą seedera. Gwarantuje to spójność danych i ułatwia filtrowanie floty
 * **Integralność danych:** Migracje wykorzystują reguły onDelete('restrict') dla słowników. Zabezpiecza to system przed przypadkowym usunięciem konfiguracji (np. modelu pojazdu), która jest już przypisana do konkretnego auta.
+## Plany rozwoju systemu
+### 1.Dokończenie paneli
+Dokończenie dedykowanych widoków dla posczególnych ról (Admin,Technik,Księgowa,Właściciel,Kierowca)
+* **Administrator (SuperUser)** Ma dostęp do absolutnie wszystkiego. Zarządza całą strukturą aplikacji, uprawnieniami i może edytować każdy rekord w bazie.
+* **Technik (Admin):** Zarządza flotą i użytkownikami na co dzień. Może dodawać nowe pojazdy, zakładać konta pracownikom i poprawiać błędy we wpisach (nadzór nad danymi).
+* **Właściciel** Widok biznesowy. Ma pełny wgląd w finanse, statystyki zarobków, raporty o kierowcach oraz stanie całej floty.
+* **Kierowca:** Widok osobisty. Ma podgląd swoich danych, przypisanych tras, pojazdów oraz historii wykonanych zleceń.
+* **Księgowa** Dostęp ograniczony do finansów. Zarządza fakturami, kosztami (paliwo, serwisy) i rozliczeniami.
+### 2.Uproszczenie dodawania nowych danych
+Wprowadzenie uproszczonych mechanizmów dodawania, wglądu do danych.
+* **Asystent dodawania:**System "prowadzi za ręke" podczas dodawania nowych rekordów. Przykładowo dodając nowego pracownika, aplikacja przeprowadza użytkownika przez kolejne etapy (dane osobowe, kontaktowe, dokumenty)
+* **Filtry kaskadowe:** Przebudowa aktualnych filtrów aby były zależne od siebie
+* **Dynamiczne uzupełniane brakujących danych:** jezeli podczas wypelniania formularza brakuje np. Miasta itp, system pozwala ich na natychmiastowe dodanie w wyskakującym oknie, bez przerywania obecnego formularza
+* **Szablony techniczne i autouzupełnianie:** Wykorzystanie celowo zdenormalizowanych tabel z wzorcami marek i modeli. Po wybraniu konkretnego modelu (np. Scania S500), system automatycznie uzupełnia dane techniczne (moc, silnik, parametry) eliminując ręczne wpisywanie powtarzalnych informacji
+### 3.Automatyczna weryfikacja i synchronizacja danych
+* **Weryfikacja statusów:** Automatyczne sprawdzanie daty np. ważności i zmiana flagi *is_active* na podstawie terminów (np.Koniec ważności dokumentu, przeglądu lub umowy pracownika)
+* **Czyszczenie danych:** Archiwizacja starych, nieaktualnych danych w celu zachowania przejrzystości paneli aby zawieraly akutalne informacje
+### 4.Wykresy i statystyki
+* **Analiza zarobków:** Widoki obliczające zarobek generowany przez konkretne pojazdy (zysk - koszt eksplotacji)
+* **Wykorzystanie:** Statystyka pokazująca procentowe wykorzystanie floty (np. ile dni pojazd był w trasie a ile stał)
+* **Spalanie i koszty:** Automatyczne wyliczanie średniego zużycia paliwa na podstawie wpisów tankowań i przebiegów podczas tankowania
+* **Wizualizacja danych:** Wykresy do monitorowania wydatków i przychodów w okreslonym czasie (tydzień/miesiąc/kwartał)
+### 5.Interaktywna (Vue + API)
+Wielofunkcyjjna mapa z filtrami:
+* **Zarządzanie widocznością:** Interaktywne filtry pozwalające na pokazanie/ukrycie konkretenych warst (np. pokaż pojazdy, ukryj naczepy)
+* **Pojazdy:** Wyświetlanie pojazdów na podstawie ostatnio zapisanych współrzędnych (lokalizacji)
+* **Punkty logistyczne i bazy:** Wyswietlenie lokalizacji punktu rozładunku czy załadunku oraz wyświetlenie miejsc np. Garaż czy plac
+* **Historia Trasy:** Podgląd do przebytej drogi po kliknieciu na dany pojazd
+* **Aktulizacja mapy:** Aktulizacja mapy po określonym czasie (np. co 15minut)
+### 6.Aplikacja mobilna
+Lekka aplikacja dla kierowców służąca jako źródło danych dla systemu
+* **Moduł GPS:** Automatyczne zbieranie i wysyłanie kordynatów do bazy w celu śledzenia pojazdu na mapie
+* **Status kierowcy:** Możliwość odkliknięcia w aplikacji akutalnego statusu (np. Pauza/W trasie)
+* **Szybki podgląd:** Szybki, aktualnie przypisanych zleceń 
