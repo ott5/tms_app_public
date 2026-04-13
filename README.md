@@ -64,8 +64,8 @@ Ten fragment projektu przedstawia podejście do zarządzania zróżnicowaną flo
 ## Plany rozwoju systemu
 ### 1.Dokończenie paneli
 Dokończenie dedykowanych widoków dla posczególnych ról (Admin,Technik,Księgowa,Właściciel,Kierowca)
-* **Administrator (SuperUser) **[90%]**** Ma dostęp do absolutnie wszystkiego. Zarządza całą strukturą aplikacji, uprawnieniami i może edytować każdy rekord w bazie.
-* **Technik (Admin)**[70%]**:** Zarządza flotą i użytkownikami na co dzień. Może dodawać nowe pojazdy, zakładać konta pracownikom i poprawiać błędy we wpisach (nadzór nad danymi).
+* **Administrator (SuperUser) [90%]** Ma dostęp do absolutnie wszystkiego. Zarządza całą strukturą aplikacji, uprawnieniami i może edytować każdy rekord w bazie.
+* **Technik (Admin)[70%]:** Zarządza flotą i użytkownikami na co dzień. Może dodawać nowe pojazdy, zakładać konta pracownikom i poprawiać błędy we wpisach (nadzór nad danymi).
 * **Właściciel** Widok biznesowy. Ma pełny wgląd w finanse, statystyki zarobków, raporty o kierowcach oraz stanie całej floty.
 * **Kierowca:** Widok osobisty. Ma podgląd swoich danych, przypisanych tras, pojazdów oraz historii wykonanych zleceń.
 * **Księgowa** Dostęp ograniczony do finansów. Zarządza fakturami, kosztami (paliwo, serwisy) i rozliczeniami.
