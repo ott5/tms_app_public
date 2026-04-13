@@ -64,14 +64,14 @@ Ten fragment projektu przedstawia podejście do zarządzania zróżnicowaną flo
 ## Plany rozwoju systemu
 ### 1.Dokończenie paneli
 Dokończenie dedykowanych widoków dla posczególnych ról (Admin,Technik,Księgowa,Właściciel,Kierowca)
-* **Administrator (SuperUser) (90% ukończone)** Ma dostęp do absolutnie wszystkiego. Zarządza całą strukturą aplikacji, uprawnieniami i może edytować każdy rekord w bazie.
-* **Technik (Admin):** Zarządza flotą i użytkownikami na co dzień. Może dodawać nowe pojazdy, zakładać konta pracownikom i poprawiać błędy we wpisach (nadzór nad danymi).
+* **Administrator (SuperUser) **[90%]**** Ma dostęp do absolutnie wszystkiego. Zarządza całą strukturą aplikacji, uprawnieniami i może edytować każdy rekord w bazie.
+* **Technik (Admin)**[70%]**:** Zarządza flotą i użytkownikami na co dzień. Może dodawać nowe pojazdy, zakładać konta pracownikom i poprawiać błędy we wpisach (nadzór nad danymi).
 * **Właściciel** Widok biznesowy. Ma pełny wgląd w finanse, statystyki zarobków, raporty o kierowcach oraz stanie całej floty.
 * **Kierowca:** Widok osobisty. Ma podgląd swoich danych, przypisanych tras, pojazdów oraz historii wykonanych zleceń.
 * **Księgowa** Dostęp ograniczony do finansów. Zarządza fakturami, kosztami (paliwo, serwisy) i rozliczeniami.
 ### 2.Uproszczenie dodawania nowych danych
 Wprowadzenie uproszczonych mechanizmów dodawania, wglądu do danych.
-* **Asystent dodawania:**System "prowadzi za ręke" podczas dodawania nowych rekordów. Przykładowo dodając nowego pracownika, aplikacja przeprowadza użytkownika przez kolejne etapy (dane osobowe, kontaktowe, dokumenty)
+* **Asystent dodawania:** System "prowadzi za ręke" podczas dodawania nowych rekordów. Przykładowo dodając nowego pracownika, aplikacja przeprowadza użytkownika przez kolejne etapy (dane osobowe, kontaktowe, dokumenty)
 * **Filtry kaskadowe:** Przebudowa aktualnych filtrów aby były zależne od siebie
 * **Dynamiczne uzupełniane brakujących danych:** jezeli podczas wypelniania formularza brakuje np. Miasta itp, system pozwala ich na natychmiastowe dodanie w wyskakującym oknie, bez przerywania obecnego formularza
 * **Szablony techniczne i autouzupełnianie:** Wykorzystanie celowo zdenormalizowanych tabel z wzorcami marek i modeli. Po wybraniu konkretnego modelu (np. Scania S500), system automatycznie uzupełnia dane techniczne (moc, silnik, parametry) eliminując ręczne wpisywanie powtarzalnych informacji
