@@ -85,9 +85,9 @@ Wprowadzenie uproszczonych mechanizmów dodawania, wglądu do danych.
 * **Wykorzystanie:** Statystyka pokazująca procentowe wykorzystanie floty (np. ile dni pojazd był w trasie a ile stał)
 * **Spalanie i koszty:** Automatyczne wyliczanie średniego zużycia paliwa na podstawie wpisów tankowań i przebiegów podczas tankowania
 * **Wizualizacja danych:** Wykresy do monitorowania wydatków i przychodów w okreslonym czasie (tydzień/miesiąc/kwartał)
-### 5.Interaktywna (Vue + API)
+### 5.Interaktywna mapa (Vue/React + API)
 Wielofunkcyjjna mapa z filtrami:
-* **Zarządzanie widocznością:** Interaktywne filtry pozwalające na pokazanie/ukrycie konkretenych warst (np. pokaż pojazdy, ukryj naczepy)
+* **Zarządzanie widocznością:** Interaktywne filtry pozwalające na pokazanie/ukrycie konkretenych warstw (np. pokaż pojazdy, ukryj naczepy)
 * **Pojazdy:** Wyświetlanie pojazdów na podstawie ostatnio zapisanych współrzędnych (lokalizacji)
 * **Punkty logistyczne i bazy:** Wyswietlenie lokalizacji punktu rozładunku czy załadunku oraz wyświetlenie miejsc np. Garaż czy plac
 * **Historia Trasy:** Podgląd do przebytej drogi po kliknieciu na dany pojazd
