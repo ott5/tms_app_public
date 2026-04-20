@@ -1,4 +1,4 @@
-# TMS APP - System Zarządzania Transportem
+# TMS APP - Transport Manager System
 
 * **Status:** MVP / Prototyp pod projekt inżynierski
 * **Stack:** PHP 8.2+ | Laravel 12+ | Filament PHP v5 | MySQL 8.4
