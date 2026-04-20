@@ -18,8 +18,15 @@ Baza i architektura są już w większości zaprojektowane i wdrożone:
 * **Prywatność:** Ze względu na charakter projektu (praca inżynierska), główne repozytorium z kodem źródłowym pozostaje prywatne.
 * **Inne:** Warstwa techniczna i kod są w języku angielskim, natomiast interfejs użytkownika (UI) posiada polskie tłumaczenia (Pol-English). Jest to stan tymczasowy na potrzeby prototypu.
 
+## Diagram
+
+Diagram prezentujący część systemu.
+
+**[database_schema.pdf](./database_schema.pdf)**
+
 ## Przykładowa wizualizacja
-Podgląd struktury bazy oraz przykład działających paneli systemu znajduje się w załączonym pliku. Stan na dzień **03.04.2026**:
+
+Przykład działających paneli systemu znajduje się w załączonym pliku. Stan na dzień **03.04.2026**:
 
 **[TMS_APP_Prezentacja.pdf](./TMS_APP_Prezentacja.pdf)**
 
