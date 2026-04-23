@@ -22,8 +22,14 @@ class VehicleForm
                 Section::make('Podstawowe informacje')
                     ->schema([
                         self::getVehicleTypeSelect()
+                            ->afterStateHydrated(fn (Set $set, ?Model $record) => 
+                                $set('vehicleType_id', $record?->model?->vehicleType?->id)
+                            )
                             ->required(),
                         self::getVehicleBrandSelect()
+                            ->afterStateHydrated(fn (Set $set, ?Model $record)=> 
+                                $set('brand_id', $record?->model?->vehicleBrand?->id)
+                            )
                             ->required(),
                         self::getVehicleModelSelect()
                             ->required(),
@@ -63,17 +69,13 @@ class VehicleForm
         return Select::make('vehicleType_id')
             ->label('Typ pojazdu')
             ->live()
-            ->relationship('model.vehicleType', 'name')
-            ->afterStateHydrated(fn (Set $set, ?Model $record) => 
-                $set('vehicleType_id', $record?->model?->vehicleType?->id)
-            )
+            ->relationship('model.vehicleType', 'name')            
             ->afterStateUpdated(function (Set $set){
                 $set('brand_id', null);
                 $set('model_id', null);
                 $set('axle_configuration_type_id', null);
             })
             ->searchable()
-            ->dehydrated(false)
             ->preload();
     }
     public static function getVehicleBrandSelect():Select{
@@ -87,10 +89,7 @@ class VehicleForm
                 modifyQueryUsing: fn (Builder $query,Get $get) 
                     =>$query->whereHas('models', fn($q)
                         =>$q->where('vehicle_type_id', $get('vehicleType_id'))),
-            )
-            ->afterStateHydrated(fn (Set $set, ?Model $record) => 
-                $set('brand_id', $record?->model?->vehicleBrand?->id)
-            )
+            )            
             ->afterStateUpdated(function (Set $set){
                 $set('model_id', null);
                 $set('axle_configuration_type_id', null);
@@ -108,9 +107,6 @@ class VehicleForm
                 titleAttribute:'name',
                 modifyQueryUsing: fn (Builder $query,Get $get) 
                     =>$query->where('vehicle_brand_id', $get('brand_id')),
-            )
-            ->afterStateHydrated(fn (Set $set, ?Model $record) => 
-                $set('model_id', $record?->model_id)
             )
             ->afterStateUpdated(function (Set $set){
                 $set('axle_configuration_type_id', null);
@@ -133,10 +129,7 @@ class VehicleForm
                         default => $query, //Dla innych typów pojazdów brak dodatkowych kryteriów
                     };
                 }
-            )
-            ->afterStateHydrated(fn (Set $set, ?Model $record) => 
-                $set('axle_configuration_type_id', $record?->axleConfigurationType?->id)
-            )
+            )            
             ->searchable()
             ->preload();
     }

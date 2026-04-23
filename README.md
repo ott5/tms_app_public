@@ -64,7 +64,7 @@ Ten fragment projektu przedstawia podejście do zarządzania zróżnicowaną flo
 **Tabela (Filament): [VehiclesTable.php](./code_preview/app_resources/Vehicles/Tables/VehiclesTable.php)**<br>
 **Formularz (Filament): [VehicleForm.php](./code_preview/app_resources/Vehicles/Schemas/VehicleForm.php)**<br>
 * **Cysterny**<br>
-**Migracja: [2026_03_02_170816_create_vehicle_cargo_tank_details_table.php](./code_preview/migrations/2026_03_02_170816_create_vehicle_cargo_tank_details_table)**<br>
+**Migracja: [2026_03_02_170816_create_vehicle_cargo_tank_details_table.php](./code_preview/migrations/2026_03_02_170816_create_vehicle_cargo_tank_details_table.php)**<br>
 **Model: [VehicleCargoTankDetail.php](./code_preview/models/VehicleCargoTankDetail.php)**<br>
 #### Opis techniczny
 * **Dziedziczenie tabel (CTI):** System rozdziela dane na ogólne (tabela vehicles) oraz szczegółowe (np. vehicle_cargo_tank_details). Dzięki temu parametry techniczne charakterystyczne tylko dla cystern są przechowywane w dedykowanej tabeli, co pozwala uniknąć pustych pól (NULL) i zachować czystość i estetykę w bazie.

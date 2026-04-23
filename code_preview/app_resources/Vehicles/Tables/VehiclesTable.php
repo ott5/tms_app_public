@@ -107,19 +107,19 @@ class VehiclesTable
                         $indicators = [];
                         if ($data['vehicleType_id'] ?? null) {
                             $name=\App\Models\VehicleType::find($data['vehicleType_id'])?->name;
-                            $indicators['vehicleType_id'] = "Typ pojazdu: {$name}";
+                            $indicators[] = "Typ pojazdu: {$name}";
                         }
                         if ($data['brand_id'] ?? null) {
                             $name=\App\Models\VehicleBrand::find($data['brand_id'])?->name;
-                            $indicators['brand_id'] = "Marka: {$name}";
+                            $indicators[] = "Marka: {$name}";
                         }
                         if ($data['model_id'] ?? null) {
                             $name=\App\Models\VehicleModel::find($data['model_id'])?->name;
-                            $indicators['model_id'] = "Model: {$name}";
+                            $indicators[] = "Model: {$name}";
                         }
                         if ($data['axle_configuration_type_id'] ?? null) {
-                            $name=\App\Models\AxleConfigurationType::find($data['axle_configuration_type_id'])?->code;
-                            $indicators['axle_configuration_type_id'] = "Konfiguracja osi: {$name}";
+                            $name=\App\Models\VehicleAxleConfigurationType::find($data['axle_configuration_type_id'])?->code;
+                            $indicators[] = "Konfiguracja osi: {$name}";
                         }
                         return $indicators;
                     }),
