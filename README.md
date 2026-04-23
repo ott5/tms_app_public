@@ -28,7 +28,7 @@ Diagram prezentujący część systemu.
 
 Przykład działających paneli systemu znajduje się w załączonym pliku. Stan na dzień **03.04.2026 i 23.04.2026**:
 
-**[TMS_APP_Prezentacja.pdf](./TMS_APP_Prezentacja.pdf)**
+**[TMS_APP_Presentation.pdf](./TMS_APP_Presentation.pdf)**
 
 ## Przykładowe fragmenty kodu
 Poniższe fragmenty to jedynie wycinek logiki systemu, mający na celu zaprezentowanie aktualnej wersji systemu.
