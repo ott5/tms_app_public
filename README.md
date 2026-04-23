@@ -26,18 +26,18 @@ Diagram prezentujący część systemu.
 
 ## Przykładowa wizualizacja
 
-Przykład działających paneli systemu znajduje się w załączonym pliku. Stan na dzień **03.04.2026**:
+Przykład działających paneli systemu znajduje się w załączonym pliku. Stan na dzień **03.04.2026 i 23.04.2026**:
 
 **[TMS_APP_Prezentacja.pdf](./TMS_APP_Prezentacja.pdf)**
 
 ## Przykładowe fragmenty kodu
-Poniższe fragmenty to jedynie wycinek logiki systemu, mający na celu zaprezentowanie aktualnej wersji systemu.  Stan na dzień 03.04.2026:
+Poniższe fragmenty to jedynie wycinek logiki systemu, mający na celu zaprezentowanie aktualnej wersji systemu.
 Folder **`code_preview/`** zawiera wybrane pliki z aplikacji.
-* **code_preview/app_resource/** Fragmenty konfiguracaji Filament (resource, tabela, formularz)
+* **code_preview/app_resources/** Fragmenty konfiguracaji Filament (resource, tabela, formularz)
 * **code_preview/migrations/** Wybrane migracje
 * **code_preview/models/** Wybrane modele
 
-### Przykład 1: Pracownicy i Dokumenty
+### Przykład 1: Pracownicy i Dokumenty (Stan na dzień 03.04.2026)
 Ta część projektu odpowiada za zarządzanie danymi pracowników oraz ich dokumentami.
 #### Wybrane pliki 
 * **Pracownik** <br>
@@ -55,17 +55,20 @@ Ta część projektu odpowiada za zarządzanie danymi pracowników oraz ich doku
 * **Interfejs Filament:** Tabela dokumentów dynamicznie koloruje rekordy (Danger/Warning), informując o terminach wygasania uprawnień.
 * **Obsługa załączników (Prototyp):** Obecna wersja pozwala na szybkie powiązanie skanów dokumentów z bazą danych.
 
-### Przykład 2: Pojazdy i szczegóły
+### Przykład 2: Pojazdy i szczegóły (Stan na dzień 23.04.2026)
 Ten fragment projektu przedstawia podejście do zarządzania zróżnicowaną flotą transportową (np. ciągniki, naczepy, cysterny) przy użyciu mechanizmu dziedziczenia danych.
 #### Wybrane pliki 
 * **Pojazdy** <br>
 **Migracja: [2026_03_02_170535_create_vehicles_table.php](./code_preview/migrations/2026_03_02_170535_create_vehicles_table.php)**<br>
 **Model: [Vehicle.php](./code_preview/models/Vehicle.php)**<br>
+**Tabela (Filament): [VehiclesTable.php](./code_preview/app_resources/Vehicles/Tables/VehiclesTable.php)**<br>
+**Formularz (Filament): [VehicleForm.php](./code_preview/app_resources/Vehicles/Schemas/VehicleForm.php)**<br>
 * **Cysterny**<br>
 **Migracja: [2026_03_02_170816_create_vehicle_cargo_tank_details_table.php](./code_preview/migrations/2026_03_02_170816_create_vehicle_cargo_tank_details_table)**<br>
 **Model: [VehicleCargoTankDetail.php](./code_preview/models/VehicleCargoTankDetail.php)**<br>
 #### Opis techniczny
 * **Dziedziczenie tabel (CTI):** System rozdziela dane na ogólne (tabela vehicles) oraz szczegółowe (np. vehicle_cargo_tank_details). Dzięki temu parametry techniczne charakterystyczne tylko dla cystern są przechowywane w dedykowanej tabeli, co pozwala uniknąć pustych pól (NULL) i zachować czystość i estetykę w bazie.
+* **Dynamiczny formularz i filtr** Logika pól (np. wybór marki i modelu) została wyciągnięta do osobnych metod. Dzięki temu ten sam kod obsługuje formularz dodawania auta i filtry w tabeli. Pozwala to zachować porządek i spójność filtru i formularza.
 * **Struktura słownikowa:** Kluczowe parametry, powtarzalne itp. są przechowywane w wydzielonych osobnych tabelach słownikowych. Są uzupełniane za pomocą seedera. Gwarantuje to spójność danych i ułatwia filtrowanie floty
 * **Integralność danych:** Migracje wykorzystują reguły onDelete('restrict') dla słowników. Zabezpiecza to system przed przypadkowym usunięciem konfiguracji (np. modelu pojazdu), która jest już przypisana do konkretnego auta.
 ## Plany rozwoju systemu

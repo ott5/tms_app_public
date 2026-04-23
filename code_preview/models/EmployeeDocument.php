@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * app/Models/EmployeeDocument.php
@@ -11,20 +11,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class EmployeeDocument extends Model
 {
-    use HasFactory;
     protected $table='employee_documents';
     protected $fillable=['employee_id','document_type_code','number','issue_date','issue_country_tag','expiry_date','attachment_id','is_active'];
-    public function employee(){
-        return $this->belongsTo(Employee::class,'employee_id','id');
+    public function employee(): BelongsTo{
+        return $this->belongsTo(Employee::class);
     }
-    public function documentType(){
+    public function documentType(): BelongsTo{
         return $this->belongsTo(DocumentType::class,'document_type_code','code');
     }
-    public function issueCountry(){
+    public function issueCountry(): BelongsTo{
         return $this->belongsTo(Country::class,'issue_country_tag','tag');
     }
-    public function attachment(){
-        return $this->belongsTo(Attachments::class,'attachment_id','id');
+    public function attachment(): BelongsTo{
+        return $this->belongsTo(Attachments::class);
     }
     protected $casts=['is_active'=>'boolean'];
     protected static function booted(){

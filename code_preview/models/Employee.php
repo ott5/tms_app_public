@@ -3,30 +3,42 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Observers\EmployeeObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * app/Models/Employee.php
  * Model reprezentujący pracowników w systemie, przechowujący informacje o imieniu, nazwisku, numerze pracownika, aktywności oraz powiązaniu z użytkownikiem. Pracownicy mogą mieć przypisane narodowości oraz adresy, co pozwala na zarządzanie danymi personalnymi i kontaktowymi pracowników w systemie.
  */
+#[ObservedBy(EmployeeObserver::class)]
 class Employee extends Model
 {
-    use HasFactory;
     protected $table='employees';
     protected $fillable=['first_name','second_name','last_name','employee_number','user_id','is_active'];
-    public function user(){
-        return $this->belongsTo(User::class,'user_id','id');
-    }
     protected $casts=['is_active'=>'boolean'];
-    public function nationalities(){
+    public static function generateEmployeeNumber(): string{
+        $prefix = 'EMP/'.date('Y').'/';
+        do{
+            $number = $prefix.str_pad(random_int(0, 9999), 4, '0', STR_PAD_LEFT);
+        } while(Employee::where('employee_number', $number)->exists());
+        return $number;
+    }
+    public function user():BelongsTo{
+        return $this->belongsTo(User::class);
+    }
+    public function nationalities():BelongsToMany{
         return $this->belongsToMany(Country::class,'employee_nationalities','employee_id','country_tag','id','tag')
             ->withTimestamps();
     }
-    public function addresses(){
-        return $this->belongsToMany(Address::class,'address_employee','employee_id','address_id','id','id')
+    public function addresses():BelongsToMany{
+        return $this->belongsToMany(Address::class)
             ->withPivot('address_type_code')
             ->withTimestamps();
     }
-    public function phoneNumbers(){
+    public function phoneNumbers():BelongsToMany{
         return $this->belongsToMany(PhoneNumber::class,'employee_phone_number','employee_id','phone_number','id','number')
             ->withPivot('phone_usage_type_code')
             ->withTimestamps();
@@ -34,22 +46,23 @@ class Employee extends Model
     public function emails(){
         return $this->user->emails();
     }
-    public function moreInformation(){
-        return $this->hasOne(EmployeeMoreInformation::class,'employee_id','id');
+    public function moreInformation():HasOne{
+        return $this->hasOne(EmployeeMoreInformation::class);
     }
-    public function documents(){
-        return $this->hasMany(EmployeeDocument::class,'employee_id','id');
+    public function documents():HasMany{
+        return $this->hasMany(EmployeeDocument::class);
     }
-    public function medicalExams(){
-        return $this->hasMany(EmployeeMedicalExam::class,'employee_id','id');
+    public function medicalExams():HasMany{
+        return $this->hasMany(EmployeeMedicalExam::class);
     }
-    public function licenseExperiences(){
-        return $this->hasMany(EmployeeLicenseExperience::class,'employee_id','id');
+    public function licenseExperiences():HasMany{
+        return $this->hasMany(EmployeeLicenseExperience::class);
     }
-    public function driver(){
-        return $this->hasOne(Driver::class,'employee_id','id');
+    public function driver():HasOne{
+        return $this->hasOne(Driver::class);
     }
     public function isDriver(){
         return $this->driver()->exists();
     }
+    
 }

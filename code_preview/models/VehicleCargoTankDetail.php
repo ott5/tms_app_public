@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * app/Models/VehicleCargoTankDetail.php
  * Model do tabeli szczegółów zbiorników ładunkowych pojazdów, zawierający informacje o typie zbiornika, klasie ciśnienia, ochronie termicznej, metodzie rozładunku, materiale oraz czy jest to pojazd ADR
@@ -21,28 +22,28 @@ class VehicleCargoTankDetail extends Model
         'adr_id',
         'compartment_count'
     ];
-    public function vehicle(){
-        return $this->belongsTo(Vehicle::class);
-    }
-    public function tankType(){
-        return $this->belongsTo(VehicleTankType::class,'tank_type_id');
-    }
-    public function pressureClass(){
-        return $this->belongsTo(VehicleTankPressureType::class,'pressure_class_id');
-    }
-    public function thermalProtection(){
-        return $this->belongsTo(VehicleThermalProtectionType::class,'thermal_protection_id');
-    }
-    public function dischargeMethod(){
-        return $this->belongsTo(VehicleTankDischargeMethod::class,'discharge_method_id');
-    }
-    public function material(){
-        return $this->belongsTo(VehicleBodyMaterial::class,'material_id');
-    }
-    public function adrType(){
-        return $this->belongsTo(VehicleAdrType::class,'adr_id');
-    }
     protected $casts=[
         'is_adr'=>'boolean',
     ];
+    public function vehicle(): BelongsTo{
+        return $this->belongsTo(Vehicle::class);
+    }
+    public function tankType(): BelongsTo{
+        return $this->belongsTo(VehicleTankType::class);
+    }
+    public function pressureClass(): BelongsTo{
+        return $this->belongsTo(VehicleTankPressureType::class);
+    }
+    public function thermalProtection(): BelongsTo{
+        return $this->belongsTo(VehicleThermalProtectionType::class);
+    }
+    public function dischargeMethod(): BelongsTo{
+        return $this->belongsTo(VehicleTankDischargeMethod::class);
+    }
+    public function material(): BelongsTo{
+        return $this->belongsTo(VehicleBodyMaterial::class);
+    }
+    public function adrType(): BelongsTo{
+        return $this->belongsTo(VehicleAdrType::class);
+    }
 }

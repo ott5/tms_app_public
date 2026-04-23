@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * app/models/Vehicle.php
  * Model do tabeli pojazdów
  */
 class Vehicle extends Model
 {
-    use HasFactory;
     protected $table='vehicles';
     protected $fillable=[
         'registration_number',
@@ -22,18 +21,18 @@ class Vehicle extends Model
         'axle_configuration_type_id',
         'is_active'
     ];
-    public function model(){
-        return $this->belongsTo(VehicleModel::class,'model_id');
+    public function model(): BelongsTo{
+        return $this->belongsTo(VehicleModel::class);
     }
-    public function ownerType(){
-        return $this->belongsTo(VehicleOwnerType::class,'owner_type_id');
+    public function ownerType(): BelongsTo{
+        return $this->belongsTo(VehicleOwnerType::class);
     }
-    public function axleConfigurationType(){
-        return $this->belongsTo(VehicleAxleConfigurationType::class,'axle_configuration_type_id');
+    public function axleConfigurationType(): BelongsTo{
+        return $this->belongsTo(VehicleAxleConfigurationType::class);
     }
-    protected $casts = [
+    public $casts = [
         'is_active' => 'boolean',
         'production_year' => 'integer',
-        'mileage' => 'integer'
+        'vehicle_milage' => 'integer'
     ];
 }
